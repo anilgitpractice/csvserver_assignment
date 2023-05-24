@@ -1,10 +1,16 @@
- version: '2'
- services:
-   csvserver:
-     image: iammrchetan/csvserver:latest
-     ports:
-       - "9393:9300"
-     volumes:
-       - "./inputFile:/csvserver/inputdata"
-     environment:
-       - CSVSERVER_BORDER=Orange
+version: '2'
+services:
+  csvserver:
+    image: iammrchetan/csvserver:latest
+    ports:
+      - "9393:9300"
+    volumes:
+      - ./inputFile:/csvserver/inputdata
+    environment:
+      - CSVSERVER_BORDER=Orange
+  prometheus:
+    image: prom/prometheus:v2.22.0
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml 
